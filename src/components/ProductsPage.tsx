@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigation } from './Navigation';
 import { CollectionGrid } from './CollectionGrid';
 import type { Product } from '../types';
 
@@ -10,9 +9,8 @@ interface ProductsPageProps {
 export const ProductsPage: React.FC<ProductsPageProps> = ({ onProductSelect }) => {
   return (
     <div className="min-h-screen w-full min-w-0 bg-[#fbf5ee]" style={{ fontFamily: "'Inter', sans-serif" }}>
-      <Navigation />
-      <div className="pt-[72px] sm:pt-[80px] md:pt-[88px]" />
-      <CollectionGrid onProductSelect={onProductSelect} />
+      <div className="pt-[72px] sm:pt-20 md:pt-22" aria-hidden />
+      <CollectionGrid onProductSelect={onProductSelect} standalone />
     </div>
   );
 };

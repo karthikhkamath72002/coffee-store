@@ -3,23 +3,44 @@ import { motion } from "framer-motion";
 import { HOME_BG } from "../constants";
 import heroCoffeeImage from "../assets/coffe-hero-image.png";
 
-const SCROLL_SPEED_DESKTOP = 0.0006;
-const SCROLL_SPEED_MOBILE = 0.0012;
+const SCROLL_SPEED_DESKTOP = 0.0016;
+const SCROLL_SPEED_MOBILE = 0.0032;
 const MAX_PROGRESS = 1.4;
 
 const ROLL_INTERVAL_MS = 3500;
 
+const isAnchorNav = (hash: string) => hash === "#contact" || hash === "#/about";
+
+const SCROLL_TOP_THRESHOLD = 0.5; // show hero when scrolled above this fraction of viewport height
+
 export const Hero: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [showMind, setShowMind] = useState(false);
+  const [hash, setHash] = useState(() => (typeof window !== "undefined" ? window.location.hash : ""));
+  const [scrollY, setScrollY] = useState(() => (typeof window !== "undefined" ? window.scrollY : 0));
   const progressRef = useRef(0);
   const imageRef = useRef<HTMLImageElement>(null);
   const outlineRef = useRef<HTMLHeadingElement>(null);
   const rafRef = useRef<number | null>(null);
 
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const isTablet = typeof window !== "undefined" && window.innerWidth >= 768 && window.innerWidth < 1024;
-  const heroVisible = progress < MAX_PROGRESS;
+  const anchorNav = isAnchorNav(hash);
+  const nearTop = typeof window !== "undefined" && scrollY < window.innerHeight * SCROLL_TOP_THRESHOLD;
+  const heroVisible =
+    (!anchorNav && progress < MAX_PROGRESS) || (anchorNav && nearTop);
   const text1Opacity = 1 - Math.min(progress * 2, 1);
   const text2Opacity = Math.max((progress - 0.45) * 2, 0);
   const imageScale = 1 + progress * 0.05;
@@ -117,8 +138,9 @@ export const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (anchorNav) return;
     if (progress < MAX_PROGRESS) window.scrollTo({ top: 0 });
-  }, [progress]);
+  }, [progress, anchorNav]);
 
   // Roll "Mind." / "Day." at interval
   useEffect(() => {
@@ -244,6 +266,9 @@ export const Hero: React.FC = () => {
           ref={imageRef}
           src={heroCoffeeImage}
           alt="Farfalle Coffee — Vlinder blend"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="object-contain w-full max-w-[300px] min-[380px]:max-w-[350px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[96%]"
           style={{
             maxHeight: isMobile ? "min(78vh, 480px)" : isTablet ? "min(74vh, 460px)" : "min(82vh, 640px)",

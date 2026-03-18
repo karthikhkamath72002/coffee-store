@@ -43,12 +43,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         group-hover:shadow-2xl
       "
       >
-        {/* image */}
-        <div className="h-[160px] w-full mb-6 rounded-xl overflow-hidden bg-[#fbf5ee]">
+        {/* image - full image visible, no cropping */}
+        <div className="min-h-[180px] h-[200px] w-full mb-6 rounded-xl overflow-hidden bg-[#fbf5ee] flex items-center justify-center">
           <img
             src={product.image}
             alt={product.name}
-            className="h-full w-full object-cover group-hover:scale-110 transition duration-500"
+            className="max-h-full max-w-full w-auto h-auto object-contain group-hover:scale-105 transition duration-500"
           />
         </div>
 

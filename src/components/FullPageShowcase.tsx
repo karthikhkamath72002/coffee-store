@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import { useScroll } from 'framer-motion';
-import { products } from '../constants';
+import { useProducts } from '../hooks/useProducts';
 import { ProductSlide } from './ProductSlide';
 
 export const FullPageShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const products = useProducts();
   const showcaseProducts = products.slice(0, 3);
 
   const { scrollYProgress } = useScroll({

@@ -1,26 +1,91 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-interface LoadingScreenProps {
-  onComplete: () => void;
+const MIN_DISPLAY_MS = 1200;
+
+function preloadImages(urls: string[], onOneLoaded?: () => void): Promise<void> {
+  if (urls.length === 0) return Promise.resolve();
+  return Promise.all(
+    urls.map(
+      (src) =>
+        new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            onOneLoaded?.();
+            resolve();
+          };
+          img.onerror = () => {
+            onOneLoaded?.();
+            resolve();
+          };
+          img.src = src;
+        })
+    )
+  ).then(() => {});
 }
 
-export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
+export interface LoadingScreenProps {
+  onComplete: () => void;
+  /** Image URLs to preload in the background while the splash is shown. Progress bar reflects load progress. */
+  assetsToPreload?: string[];
+}
+
+export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, assetsToPreload = [] }) => {
   const [progress, setProgress] = useState(0);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const totalCount = assetsToPreload.length || 1;
+  const allLoadedRef = useRef(false);
+  const completedRef = useRef(false);
 
   useEffect(() => {
+    if (assetsToPreload.length === 0) {
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval);
+            setTimeout(onComplete, 300);
+            return 100;
+          }
+          return prev + 2;
+        });
+      }, 30);
+      return () => clearInterval(interval);
+    }
+
+    const start = Date.now();
+    let cancelled = false;
+
+    preloadImages(assetsToPreload, () => {
+      if (cancelled) return;
+      setLoadedCount((n) => Math.min(n + 1, totalCount));
+    }).then(() => {
+      if (cancelled) return;
+      allLoadedRef.current = true;
+      setLoadedCount(totalCount);
+    });
+
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onComplete, 300);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 30);
-    return () => clearInterval(interval);
-  }, [onComplete]);
+      if (cancelled || completedRef.current) return;
+      const elapsed = Date.now() - start;
+      if (elapsed >= MIN_DISPLAY_MS && allLoadedRef.current) {
+        completedRef.current = true;
+        clearInterval(interval);
+        setProgress(100);
+        setTimeout(onComplete, 300);
+      }
+    }, 80);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [assetsToPreload, onComplete, totalCount]);
+
+  useEffect(() => {
+    if (assetsToPreload.length === 0) return;
+    const pct = totalCount ? Math.round((loadedCount / totalCount) * 100) : 0;
+    setProgress((prev) => Math.max(prev, Math.min(pct, 98)));
+  }, [loadedCount, totalCount, assetsToPreload.length]);
 
   return (
     <motion.div

@@ -1,0 +1,11 @@
+id,name,blend,description,image,accentColor
+1,"FLUTURE","50% Arabica, 50% Robusta","A strong and rich coffee blend with notes of nuts and dark chocolate. Carefully sourced beans delivering a bold and aromatic cup.","/products/fluture.png","#8B4513"
+2,"BORBOLETA","100% Robusta","A bold and intense full-bodied coffee with rich chocolatey notes. Carefully selected from the hills of Chikmagalur.","/products/borboleta.png","#5D3A1A"
+3,"IRAM SIP","70% Arabica, 30% Robusta","A robust aromatic coffee with nutty undertones, crafted from carefully balanced Arabica and Robusta beans.","/products/tram_sip.png","#1E3A8A"
+4,"PAPILLION","100% Arabica","A rich and smooth specialty Arabica coffee with delicate floral and nutty notes sourced from premium organic estates.","/products/papillion.png","#D4A574"
+5,"TITALEE","80% Arabica, 20% Robusta","A bold balanced coffee with hints of chocolate and spice from the rich soils of Chikmagalur.","/products/titalee.png","#A0522D"
+6,"FARASHA","35% Arabica, 65% Robusta","A full-bodied strong coffee with earthy and spicy undertones made from carefully selected beans.","/products/farasha.png","#C59A2D"
+7,"VLINDER","100% Arabica with Peppery Beans","A rich and smooth specialty coffee delivering berry and chocolate notes with a peppery twist.","/products/vlinder.png","#556B2F"
+8,"CLASSIC","Instant Agglomerated Coffee","Premium instant coffee offering superior taste and aroma with quick solubility for a rich cup in seconds.","/products/classic.png","#B91C1C"
+9,"FILTER COFFEE","80% Coffee, 20% Chicory","Authentic South Indian filter coffee with rich aroma and creamy froth made from carefully roasted beans and chicory.","/products/filter_coffee.png","#6B4423"
+10,"FILTER COFFEE DECOCTION","100% Arabica Decoction","Classic ready-to-use coffee decoction from Coorg, Karnataka. Simply mix with milk and sugar for traditional filter coffee.","/products/filter_coffee_2.png","#4A2C1A"

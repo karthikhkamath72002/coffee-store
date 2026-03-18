@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#1a1512] py-3 sm:py-4 md:py-5">
-      <div className="px-3 sm:px-4 md:px-5">
+      <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
         <div className="bg-[#fbf5ee] rounded-xl md:rounded-2xl py-8 sm:py-10 md:py-14 lg:py-16 px-4 sm:px-5 md:px-8">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 mb-8 sm:mb-10 md:mb-12">

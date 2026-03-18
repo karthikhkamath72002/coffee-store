@@ -49,7 +49,7 @@ export const PurchaseModal: React.FC<ModalProps> = ({
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-16 h-16 object-cover rounded-lg"
+                  className="w-16 h-16 object-cover rounded-xl"
                 />
 
                 <div>

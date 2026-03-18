@@ -15,7 +15,6 @@ const AboutUsSection: React.FC = () => {
 
   const generations = [
     {
-      number: "01",
       title: "The Foundation",
       era: "First Generation",
       description: "Family-owned coffee estates dedicated to cultivating specialized, premium coffee beans with care and integrity.",
@@ -28,7 +27,6 @@ const AboutUsSection: React.FC = () => {
       )
     },
     {
-      number: "02",
       title: "The Cultivation",
       era: "Second Generation",
       description: "Estate-grown excellence supplied to markets worldwide, building reputation through uncompromising quality.",
@@ -42,7 +40,6 @@ const AboutUsSection: React.FC = () => {
       )
     },
     {
-      number: "03",
       title: "The Evolution",
       era: "Third Generation",
       description: "Transforming heritage into a contemporary coffee brand focused on premium distribution and café experiences.",
@@ -64,8 +61,8 @@ const AboutUsSection: React.FC = () => {
   ];
 
   return (
-    <section id="our-story" ref={sectionRef} className="relative w-full min-w-0 bg-[#1a1512] py-3 sm:py-4 md:py-5 overflow-hidden">
-      <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
+    <section id="our-story" ref={sectionRef} className="relative w-full min-w-0 bg-[#1a1512] pt-3 sm:pt-4 md:pt-5 pb-0 overflow-hidden">
+      <div className="w-full min-w-0 px-3 sm:px-4 md:px-5 pb-3 sm:pb-4 md:pb-5">
         <div className="bg-[#fbf5ee] rounded-xl md:rounded-2xl overflow-hidden w-full min-w-0">
           
           {/* Hero Section */}
@@ -148,14 +145,6 @@ const AboutUsSection: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#2A1A12]/40 to-transparent" />
                     
-                    <motion.div
-                      className="absolute -bottom-6 -left-6 bg-[#fbf5ee] rounded-xl p-6 shadow-2xl"
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <div className="text-xs text-[#8B4513] tracking-[0.2em] uppercase mb-1">Est.</div>
-                      <div className="text-3xl font-serif text-[#2A1A12]" style={{ fontFamily: "'Playfair Display', serif" }}>2018</div>
-                    </motion.div>
                   </div>
 
                   <div className="absolute -top-8 -right-8 w-32 h-32 border border-[#D4A574]/30 rounded-full" />
@@ -165,12 +154,14 @@ const AboutUsSection: React.FC = () => {
             </div>
 
             <motion.div
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+              className="absolute bottom-8 inset-x-0 flex justify-center"
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               <div className="flex flex-col items-center gap-2">
-                <span className="text-[10px] text-[#5D3A1A]/40 tracking-widest uppercase">Scroll</span>
+                <span className="text-[10px] text-[#5D3A1A]/40 tracking-widest uppercase text-center">
+                  Scroll
+                </span>
                 <div className="w-px h-8 bg-gradient-to-b from-[#5D3A1A]/40 to-transparent" />
               </div>
             </motion.div>
@@ -215,13 +206,6 @@ const AboutUsSection: React.FC = () => {
                         whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(42, 26, 18, 0.15)" }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div 
-                          className={`absolute -top-4 sm:-top-6 ${index % 2 === 1 ? 'lg:right-8 left-6 sm:left-8 lg:left-auto' : 'left-6 sm:left-8'} text-6xl sm:text-7xl md:text-8xl font-serif text-[#D4A574]/10 leading-none select-none`}
-                          style={{ fontFamily: "'Playfair Display', serif" }}
-                        >
-                          {gen.number}
-                        </div>
-
                         <div className={`relative flex items-start gap-4 sm:gap-6 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                           <div className="flex-shrink-0 w-11 h-11 sm:w-14 sm:h-14 text-[#8B4513]">{gen.icon}</div>
                           <div className={index % 2 === 1 ? 'lg:text-right' : ''}>
@@ -362,8 +346,9 @@ const AboutUsSection: React.FC = () => {
                 <span className="italic text-[#8B4513]"> authenticity, consistency, and quiet luxury</span>—crafted to be enjoyed across borders and generations.
               </p>
 
-              <motion.div
-                className="mt-12 inline-flex items-center gap-3 text-[#8B4513]"
+              <motion.a
+                href="#collection"
+                className="mt-12 inline-flex items-center gap-3 text-[#8B4513] cursor-pointer hover:text-[#5D3A1A] transition-colors"
                 whileHover={{ gap: '16px' }}
                 transition={{ duration: 0.3 }}
               >
@@ -371,12 +356,52 @@ const AboutUsSection: React.FC = () => {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </motion.div>
+              </motion.a>
             </motion.div>
           </div>
 
         </div>
       </div>
+{/* Directors & Vision — inverse token: dark bg, cream border */}
+        <div className="w-full min-w-0 py-3 sm:py-4 md:py-5">
+          <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
+            <div className="min-h-screen flex items-center justify-center bg-[#2A1A12] rounded-xl md:rounded-2xl border-2 border-[#fbf5ee]/90 overflow-hidden">
+              <div className="max-w-3xl mx-auto py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <div className="h-px w-16 bg-[#D4A574]/70 mx-auto mb-8" />
+                  <h3
+                    className="text-[#fbf5ee] text-3xl sm:text-4xl md:text-5xl font-serif mb-6"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Directors & Their Vision
+                  </h3>
+                  <p
+                    className="text-[#D4A574] text-sm uppercase tracking-[0.25em] mb-6"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    Shamnas Shams • Yasar T M • Abdul Manaf C
+                  </p>
+                  <p
+                    className="text-[#fbf5ee]/90 text-base sm:text-lg leading-relaxed font-serif"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Founded in 2018, Farfalle Coffee is guided by a vision to craft a globally
+                    recognized premium coffee brand rooted in estate-grown sourcing and
+                    authentic café experiences. From the coffee hills of Coorg to coffee
+                    lovers around the world, our directors lead with a commitment to quality,
+                    sustainability, and timeless craftsmanship in every cup.
+                  </p>
+                  <div className="h-px w-16 bg-[#D4A574]/70 mx-auto mt-10" />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
   );
 };

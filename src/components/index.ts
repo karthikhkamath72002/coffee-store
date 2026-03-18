@@ -9,3 +9,6 @@ export { PurchaseModal } from './PurchaseModal';
 export { LoadingScreen } from './LoadingScreen';
 export { ProductsPage } from './ProductsPage';
 export { ProductDetailPage } from './ProductDetailPage';
+export { BulkPackagingSection } from './BulkPackagingSection';
+export { ContactSection } from './ContactSection';
+export { AdminPage } from './AdminPage';

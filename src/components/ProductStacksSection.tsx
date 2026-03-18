@@ -76,7 +76,7 @@ function ProductBlock({ stack }: { stack: (typeof STACKS)[0] }) {
                 Farfalle COFFEE
               </span>
             </div>
-            <div className="px-4 py-2 rounded-lg border-2 border-[#8B4513] bg-[#2A1A12]/5 text-center">
+            <div className="px-4 py-2 rounded-xl border-2 border-[#8B4513] bg-[#2A1A12]/5 text-center">
               <div className="text-[10px] text-[#8B4513] tracking-widest uppercase">
                 PREMIUM QUALITY
               </div>
@@ -108,7 +108,7 @@ function ProductBlock({ stack }: { stack: (typeof STACKS)[0] }) {
             <p className="flex items-center gap-2">
               <span className="font-semibold">ROAST:</span>
               {stack.roast.map((r) => (
-                <span key={r} className="px-2 py-0.5 rounded bg-[#E8DFD5]">
+                <span key={r} className="px-2 py-0.5 rounded-lg bg-[#E8DFD5]">
                   {r}
                 </span>
               ))}
@@ -132,7 +132,7 @@ function ProductBlock({ stack }: { stack: (typeof STACKS)[0] }) {
               {stack.roastPreference.map((r) => (
                 <span
                   key={r}
-                  className={`text-xs px-3 py-1.5 rounded border ${
+                  className={`text-xs px-3 py-1.5 rounded-lg border ${
                     r === stack.defaultRoast
                       ? "border-[#8B4513] bg-[#8B4513]/10 text-[#2A1A12]"
                       : "border-[#E8DFD5] text-[#5D3A1A]"
@@ -149,7 +149,7 @@ function ProductBlock({ stack }: { stack: (typeof STACKS)[0] }) {
               {GRIND_OPTIONS.map((g) => (
                 <span
                   key={g}
-                  className="text-[10px] px-2 py-1 rounded bg-[#E8DFD5]/60 text-[#2A1A12]"
+                  className="text-[10px] px-2 py-1 rounded-lg bg-[#E8DFD5]/60 text-[#2A1A12]"
                 >
                   {g}
                 </span>
