@@ -8,7 +8,6 @@ const ROLL_INTERVAL_MS = 3500;
 export const Hero: React.FC = () => {
   const [showMind, setShowMind] = useState(false);
 
-  // Roll "Mind." / "Day." at a fixed interval.
   useEffect(() => {
     const t = window.setInterval(() => setShowMind((prev) => !prev), ROLL_INTERVAL_MS);
     return () => window.clearInterval(t);
@@ -16,11 +15,11 @@ export const Hero: React.FC = () => {
 
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col lg:flex-row"
+      className="relative w-full min-h-screen flex flex-col lg:flex-row border-[12px] border-black rounded-[40px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.15)]"
       style={{ backgroundColor: HOME_BG }}
       aria-label="Farfalle Coffee hero"
     >
-      {/* Subtle normal animated dots (Home only), not tied to cursor position */}
+      {/* Animated dots */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0"
@@ -28,7 +27,6 @@ export const Hero: React.FC = () => {
           backgroundImage: 'radial-gradient(circle, rgba(139,69,19,0.38) 1.1px, transparent 1.4px)',
           backgroundSize: '24px 24px',
           opacity: 0.55,
-          filter: 'none',
         }}
         initial={{ x: 0, y: 0 }}
         animate={{ x: [0, 14, 0], y: [0, -10, 0] }}
@@ -36,7 +34,7 @@ export const Hero: React.FC = () => {
       />
 
       {/* LEFT TEXT */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-4 sm:px-6 md:px-8 lg:pl-28 xl:pl-44 pt-20 sm:pt-24 lg:pt-0 relative z-10">
+      <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-4 sm:px-6 md:px-8 lg:pl-28 xl:pl-44 relative z-10">
         <div className="max-w-xl w-full text-center lg:text-left mx-auto lg:mx-0">
           <span className="block text-[#8B4513] text-[12px] sm:text-[13px] tracking-[0.38em] uppercase mb-4 sm:mb-6">
             FARFALLE COFFEE
@@ -48,7 +46,11 @@ export const Hero: React.FC = () => {
           >
             <span className="block">Ignite</span>
             <span className="italic text-[#8B4513] block">Your</span>
-            <span className="block overflow-hidden leading-[0.95] relative" style={{ height: '1.05em' }}>
+
+            <span
+              className="block overflow-hidden leading-[0.95] relative"
+              style={{ height: '1.05em' }}
+            >
               <motion.span
                 className="absolute inset-x-0 top-0 block"
                 style={{ color: '#2A1A12' }}
@@ -57,6 +59,7 @@ export const Hero: React.FC = () => {
               >
                 Mind.
               </motion.span>
+
               <motion.span
                 className="absolute inset-x-0 top-0 block"
                 style={{ color: '#2A1A12' }}

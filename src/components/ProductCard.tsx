@@ -22,14 +22,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       className="group relative"
     >
       {/* glow effect */}
-      <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[#C98B43] to-[#E7B276] opacity-0 blur-xl group-hover:opacity-30 transition duration-500" />
+      <div className="absolute -inset-px bg-gradient-to-r from-[#C98B43] to-[#E7B276] opacity-0 blur-xl group-hover:opacity-30 transition duration-500" />
 
       <motion.div
         whileHover={{ y: -10 }}
         className="
         relative
         bg-[#fbf5ee]
-        rounded-xl
         border-2
         border-[#6b3e21]/100
         shadow-lg
@@ -44,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       "
       >
         {/* image - full image visible, no cropping */}
-        <div className="min-h-[180px] h-[200px] w-full mb-6 rounded-2xl overflow-hidden bg-[#fbf5ee] flex items-center justify-center">
+        <div className="min-h-[180px] h-[200px] w-full mb-6 overflow-hidden bg-[#fbf5ee] flex items-center justify-center">
           <img
             src={product.image}
             alt={product.name}
@@ -53,7 +52,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onError={() => {
               console.error('PLP image failed:', product.id, product.image);
             }}
-            className="w-full h-full object-contain rounded-2xl scale-[1.03] group-hover:scale-[1.08] transition-transform duration-500"
+            className="w-full h-full object-contain scale-[1.03] group-hover:scale-[1.08] transition-transform duration-500"
           />
         </div>
 

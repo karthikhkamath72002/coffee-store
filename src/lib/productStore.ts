@@ -4,11 +4,12 @@ import { products as defaultProducts } from '../constants';
 const STORAGE_KEY = 'farfalle_products';
 const STORAGE_META_KEY = `${STORAGE_KEY}_meta`;
 export const PRODUCTS_UPDATED_EVENT = 'farfalle_products_updated';
-const DEFAULT_TTL_MS = 5 * 60 * 1000; // 5 minutes
+// Keep it effectively "always fresh" so GitHub edits reflect immediately.
+const DEFAULT_TTL_MS = 0; // no client-side TTL gating
 
 const PRODUCTS_JSON_URL =
   (import.meta as ImportMeta & { env: Record<string, string | undefined> }).env?.VITE_PRODUCTS_JSON_URL ||
-  '/products.json';
+  'https://raw.githubusercontent.com/karthikhkamath72002/coffee-store/main/public/products.json';
 
 /**
  * Parse a single CSV row respecting double-quoted fields (commas inside quotes are preserved).
