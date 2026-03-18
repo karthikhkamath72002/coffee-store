@@ -15,16 +15,24 @@ export const Hero: React.FC = () => {
 
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col lg:flex-row border-[12px] border-black rounded-[40px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.15)]"
+      className="
+        relative w-full min-h-screen flex flex-col lg:flex-row
+        border-x-[12px] border-b-[12px] border-black border-t-0
+        rounded-b-[40px] rounded-t-none
+        overflow-hidden
+      "
       style={{ backgroundColor: HOME_BG }}
-      aria-label="Farfalle Coffee hero"
     >
+      {/* BACKGROUND FIX (prevents bottom strip) */}
+      <div className="absolute inset-0 bg-[#F5EFE9] -z-10" />
+
       {/* Animated dots */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(139,69,19,0.38) 1.1px, transparent 1.4px)',
+          backgroundImage:
+            'radial-gradient(circle, rgba(139,69,19,0.38) 1.1px, transparent 1.4px)',
           backgroundSize: '24px 24px',
           opacity: 0.55,
         }}
@@ -35,7 +43,7 @@ export const Hero: React.FC = () => {
 
       {/* LEFT TEXT */}
       <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-4 sm:px-6 md:px-8 lg:pl-28 xl:pl-44 relative z-10">
-        <div className="max-w-xl w-full text-center lg:text-left mx-auto lg:mx-0">
+        <div className="max-w-xl w-full text-center lg:text-left">
           <span className="block text-[#8B4513] text-[12px] sm:text-[13px] tracking-[0.38em] uppercase mb-4 sm:mb-6">
             FARFALLE COFFEE
           </span>
@@ -48,23 +56,21 @@ export const Hero: React.FC = () => {
             <span className="italic text-[#8B4513] block">Your</span>
 
             <span
-              className="block overflow-hidden leading-[0.95] relative"
+              className="block overflow-hidden relative"
               style={{ height: '1.05em' }}
             >
               <motion.span
                 className="absolute inset-x-0 top-0 block"
-                style={{ color: '#2A1A12' }}
                 animate={{ y: showMind ? '-100%' : 0 }}
-                transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration: 0.5 }}
               >
                 Mind.
               </motion.span>
 
               <motion.span
                 className="absolute inset-x-0 top-0 block"
-                style={{ color: '#2A1A12' }}
                 animate={{ y: showMind ? 0 : '100%' }}
-                transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration: 0.5 }}
               >
                 Day.
               </motion.span>
@@ -78,17 +84,12 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center pl-3 pr-6 sm:pl-6 sm:pr-8 md:pl-8 md:pr-10 lg:pl-10 lg:pr-16 xl:pr-20 pt-8 lg:pt-14 pb-6 sm:pb-8 lg:pb-0 relative z-10">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 lg:px-12 py-6 relative z-10">
         <img
           src={heroCoffeeImage}
           alt="Farfalle Coffee"
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
-          className="object-contain w-full max-w-[330px] min-[380px]:max-w-[390px] sm:max-w-[440px] md:max-w-[520px] lg:max-w-[96%]"
-          style={{
-            maxHeight: 'min(92vh, 760px)',
-          }}
+          className="object-contain w-full max-w-[520px]"
+          style={{ maxHeight: '90vh' }}
         />
       </div>
     </section>

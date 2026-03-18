@@ -31,7 +31,9 @@ export const Navigation: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <div className={`max-w-[100vw] rounded-full sm:rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-white/70 backdrop-blur-xl shadow-lg border border-white/40' : 'bg-[#fbf5ee]/90 backdrop-blur-sm'}`}>
+      <div
+        className={`max-w-[100vw] rounded-full sm:rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-white/70 backdrop-blur-xl shadow-lg border border-white/40' : 'bg-[#fbf5ee]/90 backdrop-blur-sm'}`}
+      >
         <a href="#" className="flex items-center flex-shrink-0" onClick={() => setMenuOpen(false)}>
           <img
             src={logoFarfalle}
