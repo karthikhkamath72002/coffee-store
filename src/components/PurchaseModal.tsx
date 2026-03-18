@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ModalProps } from "../types";
+import amazonImg from '../assets/amazon.png';
+import flipkartImg from '../assets/flipkart.png';
 
 export const PurchaseModal: React.FC<ModalProps> = ({
   isOpen,
@@ -76,18 +78,28 @@ export const PurchaseModal: React.FC<ModalProps> = ({
                 <motion.a
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.96 }}
-                  href="#"
-                  className="flex justify-center items-center w-full py-3 bg-[#FF9900] text-white rounded-full font-semibold shadow-md"
+                  href={product.amazonLink || '#'}
+                  className="flex justify-center items-center w-full py-3 bg-[#FF9900] text-white rounded-full font-semibold shadow-md gap-2"
                 >
+                  <img
+                    src={amazonImg}
+                    alt="Amazon"
+                    className="w-6 h-6 object-contain"
+                  />
                   Buy on Amazon
                 </motion.a>
 
                 <motion.a
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.96 }}
-                  href="#"
-                  className="flex justify-center items-center w-full py-3 bg-[#2874F0] text-white rounded-full font-semibold shadow-md"
+                  href={product.flipkartLink || '#'}
+                  className="flex justify-center items-center w-full py-3 bg-[#2874F0] text-white rounded-full font-semibold shadow-md gap-2"
                 >
+                  <img
+                    src={flipkartImg}
+                    alt="Flipkart"
+                    className="w-6 h-6 object-contain"
+                  />
                   Buy on Flipkart
                 </motion.a>
               </div>

@@ -44,11 +44,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       "
       >
         {/* image - full image visible, no cropping */}
-        <div className="min-h-[180px] h-[200px] w-full mb-6 rounded-xl overflow-hidden bg-[#fbf5ee] flex items-center justify-center">
+        <div className="min-h-[180px] h-[200px] w-full mb-6 rounded-2xl overflow-hidden bg-[#fbf5ee] flex items-center justify-center">
           <img
             src={product.image}
             alt={product.name}
-            className="max-h-full max-w-full w-auto h-auto object-contain group-hover:scale-105 transition duration-500"
+            loading="eager"
+            decoding="async"
+            onError={() => {
+              console.error('PLP image failed:', product.id, product.image);
+            }}
+            className="w-full h-full object-contain rounded-2xl scale-[1.03] group-hover:scale-[1.08] transition-transform duration-500"
           />
         </div>
 

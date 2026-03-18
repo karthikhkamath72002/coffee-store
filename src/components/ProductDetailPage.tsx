@@ -1,11 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useProducts } from '../hooks/useProducts';
-
-const LIFESTYLE_IMAGES = [
-  'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=80',
-  'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80',
-];
+import amazonImg from '../assets/amazon.png';
+import flipkartImg from '../assets/flipkart.png';
 
 interface ProductDetailPageProps {
   productId: string;
@@ -32,6 +29,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
   const goToCollection = () => {
     window.location.hash = "#/products";
   };
+
+  // Ensure PDP does not depend on external image URLs.
+  // If admin hasn't uploaded lifestyle images, we fall back to the main product image.
+  const lifestyle1 = product.lifestyleImage1 || product.image;
+  const lifestyle2 = product.lifestyleImage2 || product.image;
+  const roast = product.roast || 'Medium';
+  const process = product.process || 'Washed';
+  const size = product.size || '1 KG';
 
   return (
     <div className="min-h-screen bg-[#fbf5ee]" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -66,13 +71,28 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  onError={() => {
+                    // eslint-disable-next-line no-console
+                    console.error('PDP main image failed:', product.id, product.image);
+                  }}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4 mt-4">
-                {LIFESTYLE_IMAGES.map((img, i) => (
+                {[lifestyle1, lifestyle2].map((img, i) => (
                   <div key={i} className="rounded-xl overflow-hidden">
-                    <img src={img} className="object-cover w-full h-full" />
+                    <img
+                      src={img}
+                      className="object-cover w-full h-full"
+                      loading="eager"
+                      decoding="async"
+                      onError={() => {
+                        // eslint-disable-next-line no-console
+                        console.error('PDP lifestyle image failed:', product.id, img);
+                      }}
+                    />
                   </div>
                 ))}
               </div>
@@ -107,17 +127,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
 
                 <div className="bg-[#f3ece4] rounded-xl p-4 text-center">
                   <p className="text-xs text-[#8B4513] uppercase">Roast</p>
-                  <p className="font-semibold text-[#2A1A12]">Medium</p>
+                  <p className="font-semibold text-[#2A1A12]">{roast}</p>
                 </div>
 
                 <div className="bg-[#f3ece4] rounded-xl p-4 text-center">
                   <p className="text-xs text-[#8B4513] uppercase">Process</p>
-                  <p className="font-semibold text-[#2A1A12]">Washed</p>
+                  <p className="font-semibold text-[#2A1A12]">{process}</p>
                 </div>
 
                 <div className="bg-[#f3ece4] rounded-xl p-4 text-center">
                   <p className="text-xs text-[#8B4513] uppercase">Size</p>
-                  <p className="font-semibold text-[#2A1A12]">1 KG</p>
+                  <p className="font-semibold text-[#2A1A12]">{size}</p>
                 </div>
 
               </div>
@@ -133,7 +153,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
 
                   {/* AMAZON */}
                   <motion.a
-                    href="#"
+                    href={product.amazonLink || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -3 }}
@@ -141,8 +161,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                     className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#2A1A12]/10 shadow-sm hover:shadow-md transition"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#FF9900] flex items-center justify-center text-white font-bold">
-                        A
+                      <div className="w-10 h-10 rounded-lg bg-[#FF9900] flex items-center justify-center">
+                        <img
+                          src={amazonImg}
+                          alt="Amazon"
+                            className="w-7 h-7 object-contain"
+                        />
                       </div>
 
                       <div>
@@ -159,7 +183,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
 
                   {/* FLIPKART */}
                   <motion.a
-                    href="#"
+                    href={product.flipkartLink || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -3 }}
@@ -167,8 +191,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                     className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#2A1A12]/10 shadow-sm hover:shadow-md transition"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#2874F0] flex items-center justify-center text-white font-bold">
-                        F
+                      <div className="w-10 h-10 rounded-lg bg-[#2874F0] flex items-center justify-center">
+                        <img
+                          src={flipkartImg}
+                          alt="Flipkart"
+                            className="w-7 h-7 object-contain"
+                        />
                       </div>
 
                       <div>

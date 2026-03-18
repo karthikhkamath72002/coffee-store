@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Eye, EyeOff, Upload } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import {
   verifyAdminPassword,
   setAdminAuthenticated,
   clearAdminAuth,
   isAdminAuthenticated,
 } from '../lib/adminAuth';
-import { setProductsFromCsv } from '../lib/productStore';
+import { AdminProductEditor } from './AdminProductEditor';
 
 export const AdminPage: React.FC = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -14,8 +14,6 @@ export const AdminPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [csvMessage, setCsvMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setAuthenticated(isAdminAuthenticated());
@@ -46,65 +44,17 @@ export const AdminPage: React.FC = () => {
     setAuthenticated(false);
   };
 
-  const handleCsvUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCsvMessage(null);
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const csv = String(reader.result ?? '');
-        setProductsFromCsv(csv);
-        setCsvMessage({ type: 'success', text: `Products updated (${file.name}). PLP and PDP will show the new data.` });
-      } catch (err) {
-        setCsvMessage({ type: 'error', text: err instanceof Error ? err.message : 'Invalid CSV.' });
-      }
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    };
-    reader.readAsText(file, 'UTF-8');
-  };
-
   if (authenticated) {
     return (
       <div className="min-h-screen w-full bg-[#fbf5ee] flex flex-col items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white rounded-2xl border border-[#2A1A12]/10 shadow-lg p-8 text-center">
+        <div className="max-w-6xl w-full bg-white rounded-2xl border border-[#2A1A12]/10 shadow-lg p-8 text-left max-h-[90vh] overflow-y-auto">
           <h1 className="text-2xl font-serif text-[#2A1A12] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
             Admin
           </h1>
           <p className="text-[#2A1A12] text-sm mb-6">You are signed in.</p>
 
-          <div className="mb-6 text-left border-t border-[#2A1A12]/10 pt-6">
-            <h2 className="text-sm font-medium text-[#2A1A12] mb-2">Products (PLP / PDP)</h2>
-            <p className="text-xs text-[#2A1A12] mb-3">
-              Upload a CSV with columns: <code className="bg-[#fbf5ee] text-[#2A1A12] px-1 rounded">id,name,blend,description,image,accentColor</code>. One product per row. Use the <strong>image</strong> column for a URL or path (e.g. <code className="bg-[#fbf5ee] text-[#2A1A12] px-1 rounded">/products/name.png</code>).
-            </p>
-            <a
-              href="/products-template.csv"
-              download
-              className="text-xs text-[#8B4513] hover:underline mb-3 inline-block"
-            >
-              Download template CSV
-            </a>
-            <label className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border-2 border-dashed border-[#8B4513]/50 text-[#2A1A12] text-sm cursor-pointer hover:border-[#8B4513] hover:bg-[#fbf5ee]/50 transition-colors">
-              <Upload className="w-4 h-4" />
-              <span>Choose CSV to upload</span>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".csv"
-                className="sr-only"
-                onChange={handleCsvUpload}
-                aria-label="Upload products CSV"
-              />
-            </label>
-            {csvMessage && (
-              <p
-                className={`mt-2 text-xs ${csvMessage.type === 'success' ? 'text-green-700' : 'text-red-600'}`}
-                role="alert"
-              >
-                {csvMessage.text}
-              </p>
-            )}
+          <div className="w-full mt-4">
+            <AdminProductEditor onLogout={handleLogout} embedded={true} showSignOut={false} />
           </div>
 
           <button

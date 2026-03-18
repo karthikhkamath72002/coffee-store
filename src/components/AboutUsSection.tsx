@@ -396,6 +396,32 @@ const AboutUsSection: React.FC = () => {
                     lovers around the world, our directors lead with a commitment to quality,
                     sustainability, and timeless craftsmanship in every cup.
                   </p>
+
+                  <div className="h-px w-16 bg-[#D4A574]/70 mx-auto mt-10 mb-8" />
+
+                  <div className="text-center max-w-2xl mx-auto">
+                    <h3
+                      className="text-[#fbf5ee] text-3xl sm:text-4xl md:text-5xl font-serif mb-6"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      The Mission
+                    </h3>
+                    <p
+                      className="text-[#D4A574] text-sm uppercase tracking-[0.25em] mb-6"
+                      style={{ fontFamily: "'Inter', sans-serif" }}
+                    >
+                      Estate-grown excellence
+                    </p>
+                    <p
+                      className="text-[#fbf5ee]/90 text-base sm:text-lg leading-relaxed font-serif"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      Committed to cultivating, sourcing, and delivering exceptional estate-grown coffee—rooted
+                      in generational knowledge, and delivered through responsible distribution and thoughtfully
+                      designed café experiences.
+                    </p>
+                  </div>
+
                   <div className="h-px w-16 bg-[#D4A574]/70 mx-auto mt-10" />
                 </motion.div>
               </div>

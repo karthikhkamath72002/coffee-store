@@ -6,7 +6,7 @@
  *   and replace ADMIN_PASSWORD_HASH.
  */
 const ADMIN_PASSWORD_HASH =
-  '3a6d8b685d12034a45835e46880a7de2fd245a6570e22dd6d835f1d896040c95';
+  '67eda68854864551659d5bed381ae1936f3f38946dd25be5625b2a5f605e86f7';
 
 export async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();

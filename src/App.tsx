@@ -12,29 +12,26 @@ import {
   LoadingScreen,
   ProductsPage,
   ProductDetailPage,
-  AdminPage,
 } from './components';
 import heroCoffeeImage from './assets/coffe-hero-image.png';
 import logoFarfalle from './assets/logo-farfalle.png';
-import { getProducts } from './lib/productStore';
+import { getProducts, refreshProductsFromGithub } from './lib/productStore';
 
-const getPreloadImages = () => [
+const getPreloadImages = (products: Product[]) => [
   heroCoffeeImage,
   logoFarfalle,
-  ...getProducts().map((p) => p.image),
+  ...products.flatMap((p) => [p.image, p.lifestyleImage1, p.lifestyleImage2].filter(Boolean) as string[]),
 ];
 
 const PRODUCTS_HASH = '#/products';
 const PRODUCT_HASH_PREFIX = '#/product/';
-const ADMIN_HASH = '#/admin';
 
-type Route = 'home' | 'products' | 'admin' | { page: 'product'; id: string };
+type Route = 'home' | 'products' | { page: 'product'; id: string };
 
 const getRoute = (): Route => {
   const hash = window.location.hash;
   const pathname = window.location.pathname.replace(/\/$/, '') || '/';
   if (hash === PRODUCTS_HASH || pathname === '/products') return 'products';
-  if (hash === ADMIN_HASH || pathname === '/admin') return 'admin';
   if (hash.startsWith(PRODUCT_HASH_PREFIX)) {
     const id = hash.slice(PRODUCT_HASH_PREFIX.length).split('/')[0] || '';
     if (id) return { page: 'product', id };
@@ -45,6 +42,7 @@ const getRoute = (): Route => {
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [route, setRoute] = useState<Route>(getRoute);
+  const [preloadProducts, setPreloadProducts] = useState<Product[]>(getProducts());
 
 
   const scrollToId = (id: string) => {
@@ -78,6 +76,15 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', syncRoute);
       window.removeEventListener('popstate', syncRoute);
     };
+  }, []);
+
+  useEffect(() => {
+    // Load latest products from GitHub config so all visitors see updates.
+    refreshProductsFromGithub()
+      .then(() => setPreloadProducts(getProducts()))
+      .catch(() => {
+        // If GitHub fetch fails, fall back to cached/default products.
+      });
   }, []);
 
   useEffect(() => {
@@ -119,25 +126,24 @@ const App: React.FC = () => {
       `}</style>
 
       <AnimatePresence>
-        {isLoading && <LoadingScreen assetsToPreload={getPreloadImages()} onComplete={() => setIsLoading(false)} />}
+        {isLoading && (
+          <LoadingScreen
+            assetsToPreload={getPreloadImages(preloadProducts)}
+            onComplete={() => setIsLoading(false)}
+          />
+        )}
       </AnimatePresence>
 
       {!isLoading && (
         <>
           <Navigation />
           <motion.div className="w-full min-w-0 overflow-x-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            {route === 'admin' ? (
-              <>
-                <div className="pt-[72px] sm:pt-20 md:pt-22" aria-hidden />
-                <AdminPage />
-              </>
-            ) : route === 'products' ? (
+            {route === 'products' ? (
               <ProductsPage onProductSelect={handleProductClick} />
             ) : route !== 'home' && typeof route === 'object' && route.page === 'product' ? (
               <ProductDetailPage productId={route.id} />
             ) : (
               <>
-                <div style={{ height: '100vh' }} />
                 <div className="w-full min-w-0 bg-[#1a1512] pb-3 sm:pb-4 md:pb-5">
                   <Hero />
                 </div>

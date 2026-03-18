@@ -164,15 +164,15 @@ export const BulkPackagingSection: React.FC = () => {
                     ].map((pack, i) => (
                       <div
                         key={i}
-                        className="relative bg-white rounded-xl border border-[#2A1A12]/10 px-3 pt-6 pb-5 text-center hover:border-[#8B4513]/30 hover:-translate-y-0.5 transition-all duration-200 overflow-hidden group cursor-default"
+                        className="relative bg-white rounded-xl border border-[#2A1A12]/10 px-3 pt-7 pb-6 text-center hover:border-[#8B4513]/30 hover:-translate-y-0.5 transition-all duration-200 overflow-hidden group cursor-default"
                       >
                         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8B4513] to-[#D4A574] opacity-0 group-hover:opacity-100 transition-opacity" />
                         {/* Image area — generous height */}
-                        <div className="h-[130px] sm:h-[140px] flex items-center justify-center mb-4">
+                        <div className="h-[170px] sm:h-[180px] md:h-[200px] flex items-center justify-center mb-4">
                           <img
                             src={pack.img}
                             alt={pack.alt}
-                            className="w-[85%] h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                            className="w-[90%] h-full object-contain group-hover:scale-105 transition-transform duration-300"
                             style={{ filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.15))" }}
                           />
                         </div>
