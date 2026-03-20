@@ -45,7 +45,7 @@ export const BulkPackagingSection: React.FC = () => {
   return (
     <section
       id="bulk-packaging"
-      className="relative w-full min-w-0 bg-[#1a1512] py-3 sm:py-4 md:py-5 overflow-hidden"
+      className="relative w-full min-w-0 bg-[#1a1512] py-[0.585rem] sm:py-[0.78rem] md:py-[0.975rem] overflow-hidden"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">

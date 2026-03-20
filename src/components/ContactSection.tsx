@@ -16,7 +16,7 @@ const EMAILS = [
 
 export const ContactSection: React.FC = () => {
   return (
-    <section id="contact" className="relative w-full min-w-0 bg-[#1a1512] py-3 sm:py-4 md:py-5 overflow-hidden">
+    <section id="contact" className="relative w-full min-w-0 bg-[#1a1512] py-[0.585rem] sm:py-[0.78rem] md:py-[0.975rem] overflow-hidden">
       <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
         <div className="bg-[#fbf5ee] rounded-xl md:rounded-2xl border border-[#2A1A12]/10 py-10 sm:py-12 md:py-16 lg:py-20 overflow-hidden">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-8">

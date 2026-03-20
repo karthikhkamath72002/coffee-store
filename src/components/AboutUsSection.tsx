@@ -61,8 +61,8 @@ const AboutUsSection: React.FC = () => {
   ];
 
   return (
-    <section id="our-story" ref={sectionRef} className="relative w-full min-w-0 bg-[#1a1512] pt-3 sm:pt-4 md:pt-5 pb-0 overflow-hidden">
-      <div className="w-full min-w-0 px-3 sm:px-4 md:px-5 pb-3 sm:pb-4 md:pb-5">
+    <section id="our-story" ref={sectionRef} className="relative w-full min-w-0 bg-[#1a1512] pt-[0.585rem] sm:pt-[0.78rem] md:pt-[0.975rem] pb-0 overflow-hidden">
+      <div className="w-full min-w-0 px-3 sm:px-4 md:px-5 pb-[0.585rem] sm:pb-[0.78rem] md:pb-[0.975rem]">
         <div className="bg-[#fbf5ee] rounded-xl md:rounded-2xl overflow-hidden w-full min-w-0">
           
           {/* Hero Section */}
@@ -363,7 +363,7 @@ const AboutUsSection: React.FC = () => {
         </div>
       </div>
 {/* Directors & Vision — inverse token: dark bg, cream border */}
-        <div className="w-full min-w-0 py-3 sm:py-4 md:py-5">
+        <div className="w-full min-w-0 py-[0.585rem] sm:py-[0.78rem] md:py-[0.975rem]">
           <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
             <div className="min-h-screen flex items-center justify-center bg-[#2A1A12] rounded-xl md:rounded-2xl border-2 border-[#fbf5ee]/90 overflow-hidden">
               <div className="max-w-3xl mx-auto py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 text-center">

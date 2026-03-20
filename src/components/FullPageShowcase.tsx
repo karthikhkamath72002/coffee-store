@@ -15,7 +15,7 @@ export const FullPageShowcase: React.FC = () => {
 
   return (
     <section ref={containerRef} className="relative w-full min-w-0 overflow-hidden" style={{ height: `${showcaseProducts.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen w-full min-w-0 max-w-[100vw] bg-[#1a1512] p-3 md:p-5 overflow-hidden">
+      <div className="sticky top-0 h-screen w-full min-w-0 max-w-[100vw] bg-[#1a1512] p-[0.585rem] md:p-[0.975rem] overflow-hidden">
         {showcaseProducts.map((product, index) => (
           <ProductSlide
             key={product.id}

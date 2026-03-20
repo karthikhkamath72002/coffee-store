@@ -26,7 +26,7 @@ export const Navigation: React.FC = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-40 w-full min-w-0 px-3 sm:px-4 md:px-8 lg:px-12 pt-3 sm:pt-4 md:pt-5"
+      className="fixed top-0 left-0 right-0 z-40 w-full min-w-0 px-3 sm:px-4 md:px-8 lg:px-12 pt-7 sm:pt-8 md:pt-9"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
@@ -81,7 +81,7 @@ export const Navigation: React.FC = () => {
         {menuOpen && (
           <>
             <motion.div
-              className="fixed inset-0 top-[60px] sm:top-[64px] z-30 bg-[#2A1A12]/20 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 top-[76px] sm:top-[80px] z-30 bg-[#2A1A12]/20 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -89,7 +89,7 @@ export const Navigation: React.FC = () => {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              className="fixed left-3 right-3 top-[56px] sm:top-[60px] z-40 lg:hidden bg-[#fbf5ee] rounded-2xl shadow-2xl border border-[#2A1A12]/10 overflow-hidden"
+              className="fixed left-3 right-3 top-[72px] sm:top-[76px] z-40 lg:hidden bg-[#fbf5ee] rounded-2xl shadow-2xl border border-[#2A1A12]/10 overflow-hidden"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}

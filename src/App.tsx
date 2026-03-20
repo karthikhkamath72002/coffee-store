@@ -143,8 +143,8 @@ const App: React.FC = () => {
             ) : route !== 'home' && typeof route === 'object' && route.page === 'product' ? (
               <ProductDetailPage productId={route.id} />
             ) : (
-              <div className="w-full min-w-0 border-[16px] sm:border-[18px] border-[#2A1A12] overflow-hidden bg-[#fbf5ee]">
-                <div className="w-full min-w-0 bg-[#1a1512] pb-3 sm:pb-4 md:pb-5">
+                <div className="w-full min-w-0 overflow-hidden bg-[#fbf5ee]">
+                <div className="w-full min-w-0 bg-[#1a1512]">
                   <Hero />
                 </div>
                 <AboutUsSection />

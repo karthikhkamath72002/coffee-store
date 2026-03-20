@@ -22,10 +22,10 @@ export const CollectionGrid: React.FC<CollectionGridProps> = ({ onProductSelect,
   return (
     <section
       id="collection"
-      className={`relative w-full min-w-0 overflow-x-hidden ${standalone ? 'bg-[#fbf5ee] py-2 sm:py-3 md:py-4' : 'bg-[#1a1512] py-3 sm:py-4 md:py-5'}`}
+      className={`relative w-full min-w-0 overflow-x-hidden ${standalone ? 'bg-[#fbf5ee] py-2 sm:py-3 md:py-4' : 'bg-[#1a1512] py-[0.585rem] sm:py-[0.78rem] md:py-[0.975rem]'}`}
     >
       <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
-        <div className={`bg-[#fbf5ee] pb-10 sm:pb-14 md:pb-20 lg:pb-24 px-4 sm:px-6 md:px-8 ${standalone ? 'pt-6 sm:pt-8 md:pt-10' : 'pt-12 sm:pt-16 md:pt-20 lg:pt-24'}`}>
+        <div className={`bg-[#fbf5ee] rounded-xl md:rounded-2xl pb-10 sm:pb-14 md:pb-20 lg:pb-24 px-4 sm:px-6 md:px-8 ${standalone ? 'pt-6 sm:pt-8 md:pt-10' : 'pt-12 sm:pt-16 md:pt-20 lg:pt-24'}`}>
           <div className="text-center mb-8 sm:mb-12 md:mb-16 pt-2 overflow-visible">
             <motion.span
               className="block text-[#8B4513] text-[10px] md:text-xs tracking-[0.3em] uppercase mb-2 md:mb-3 font-medium"

@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Instagram } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1a1512] py-3 sm:py-4 md:py-5">
+    <footer className="bg-[#1a1512] py-[0.585rem] sm:py-[0.78rem] md:py-[0.975rem]">
       <div className="w-full min-w-0 px-3 sm:px-4 md:px-5">
         <div className="bg-[#fbf5ee] rounded-xl md:rounded-2xl py-8 sm:py-10 md:py-14 lg:py-16 px-4 sm:px-5 md:px-8">
           <div className="max-w-5xl mx-auto">
@@ -16,17 +17,17 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-2 sm:gap-2.5">
-                {[{ letter: 'I', name: 'Instagram' }, { letter: 'T', name: 'Twitter' }, { letter: 'F', name: 'Facebook' }].map((social, i) => (
-                  <motion.a
-                    key={i}
-                    href="#"
-                    className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-[#2A1A12]/5 text-[#5D3A1A] text-xs font-medium hover:bg-[#2A1A12] hover:text-[#FFF8E9] transition-colors touch-manipulation"
-                    whileHover={{ scale: 1.08 }}
-                    title={social.name}
-                  >
-                    {social.letter}
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://www.instagram.com/farfallecoffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-[#2A1A12]/5 text-[#5D3A1A] hover:bg-[#2A1A12] hover:text-[#FFF8E9] transition-colors touch-manipulation"
+                  whileHover={{ scale: 1.08 }}
+                  title="Instagram"
+                  aria-label="Visit Farfalle Coffee on Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                </motion.a>
               </div>
             </div>
 
